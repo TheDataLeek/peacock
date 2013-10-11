@@ -27,10 +27,14 @@ def gen_thumbs(imgdir, thumbdir, size):
         name       = image[1].split('.')
         thumb_name = name[0] + '_thumb.' + name[1]
         path       = os.path.join(thumbdir, thumb_name)
-        source_img = Image.open(source)
-        source_img.thumbnail(size)
-        source_img.save(path)
-        print('%s Done...' % source)
+        try:
+            source_img = Image.open(source)
+            source_img.thumbnail(size)
+            source_img.save(path)
+            print('%s Done...' % source)
+        except:
+            print('%s Error, Skipping...' % source)
+
 
 def gen_markdown(imgdir, thumbdir, width):
     '''
